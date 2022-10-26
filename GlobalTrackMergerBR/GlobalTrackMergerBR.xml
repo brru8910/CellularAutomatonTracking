@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- Configuration of Module GlobalTrackMergerBR -->
+
+<GlobalTrackMergerBR
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation='[SCHEMAPATH]/GlobalTrackMergerBR.xsd'>
+  
+  <!-- Minimum and maximum Kalman Filter step size. -->
+  <minKalmanFilterStepSize unit="cm"> 0.05 </minKalmanFilterStepSize> 
+  <maxKalmanFilterStepSize unit="cm"> 5.0 </maxKalmanFilterStepSize> 
+
+  <!-- Max average track residual. -->
+  <maxAverageResidual unit="cm"> 5.0 </maxAverageResidual>
+  <!-- Max metric allowed for tracks to be merged. -->
+  <maxMergeMetric> 2.0 </maxMergeMetric>
+  
+  <!-- List of detectors in which global tracking should be performed,
+       each with its own track merging parameters. Merging order goes
+       from the top of the list to the bottom of the list. -->
+  <detectorSetupList>
+
+    <detectorSetup detectorName = "FTPC3">
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter"
+	   for fitting in a non-zero magnetic field, or "straightTrackFitter"
+	   for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch
+	   during track segment merging. A larger value indicates that mismatches
+	   in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 9.615 </xParameterWeight>
+      <yParameterWeight> 10.00 </yParameterWeight>
+      <aParameterWeight> 641.0 </aParameterWeight>
+      <bParameterWeight> 500.0 </bParameterWeight>
+      <!-- Detectors with poor momentum resolution should not take
+	   momentum magnitude into account! -->
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- List of detectors to search for merges in. Must be in
+	   the desired merging order! -->
+      <detectorsToMerge> 
+      </detectorsToMerge> 
+    </detectorSetup>
+
+    <detectorSetup detectorName = "FTPC2">
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter"
+	   for fitting in a non-zero magnetic field, or "straightTrackFitter"
+	   for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch
+	   during track segment merging. A larger value indicates that mismatches
+	   in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 3.472 </xParameterWeight>
+      <yParameterWeight> 3.472 </yParameterWeight>
+      <aParameterWeight> 1562.5 </aParameterWeight>
+      <bParameterWeight> 1250.0 </bParameterWeight>
+      <!-- Detectors with poor momentum resolution should not take
+	   momentum magnitude into account! -->
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- List of detectors to search for merges in. Must be in
+	   the desired merging order! -->
+      <detectorsToMerge> 
+	FTPC3
+      </detectorsToMerge> 
+    </detectorSetup>
+
+    <detectorSetup detectorName = "MTPCs">
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter"
+	   for fitting in a non-zero magnetic field, or "straightTrackFitter"
+	   for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch
+	   during track segment merging. A larger value indicates that mismatches
+	   in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 0.086 </xParameterWeight>
+      <yParameterWeight> 0.178 </yParameterWeight>
+      <aParameterWeight> 24.03 </aParameterWeight>
+      <bParameterWeight> 62.50 </bParameterWeight>
+      <!-- Detectors with poor momentum resolution should not take
+	   momentum magnitude into account! -->
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- List of detectors to search for merges in. Must be in
+	   the desired merging order! -->
+      <detectorsToMerge> 
+	FTPC2
+	FTPC1
+      </detectorsToMerge> 
+    </detectorSetup>
+
+    <detectorSetup detectorName = "FTPC1">
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter"
+	   for fitting in a non-zero magnetic field, or "straightTrackFitter"
+	   for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch
+	   during track segment merging. A larger value indicates that mismatches
+	   in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 1.190 </xParameterWeight>
+      <yParameterWeight> 5.952 </yParameterWeight>
+      <aParameterWeight> 138.8 </aParameterWeight>
+      <bParameterWeight> 1562.5 </bParameterWeight>
+      <!-- Detectors with poor momentum resolution should not take
+	   momentum magnitude into account! -->
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- List of detectors to search for merges in. Must be in
+	   the desired merging order! -->
+      <detectorsToMerge> 
+	FTPC2
+      </detectorsToMerge> 
+    </detectorSetup>
+
+    <detectorSetup detectorName = "VTPC2">
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter"
+	   for fitting in a non-zero magnetic field, or "straightTrackFitter"
+	   for fitting straight lines only. -->
+      <fitterToUse> kalmanFilter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch
+	   during track segment merging. A larger value indicates that mismatches
+	   in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 0.013 </xParameterWeight>
+      <yParameterWeight> 0.714 </yParameterWeight>
+      <aParameterWeight> 1.190 </aParameterWeight>
+      <bParameterWeight> 26.31 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- List of detectors to search for merges in. Must be in
+	   the desired merging order! -->
+      <detectorsToMerge> 
+	FTPC1
+	MTPCs
+	FTPC2
+	FTPC3
+	GTPC
+	VTPC1
+      </detectorsToMerge> 
+    </detectorSetup>
+
+    <detectorSetup detectorName = "GTPC">
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter"
+	   for fitting in a non-zero magnetic field, or "straightTrackFitter"
+	   for fitting straight lines only. -->
+      <fitterToUse> kalmanFilter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch
+	   during track segment merging. A larger value indicates that mismatches
+	   in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 10.00 </xParameterWeight>
+      <yParameterWeight> 14.47 </yParameterWeight>
+      <aParameterWeight> 227.2 </aParameterWeight>
+      <bParameterWeight> 568.2 </bParameterWeight>
+      <!-- Detectors with poor momentum resolution should not take
+	   momentum magnitude into account! -->
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- List of detectors to search for merges in. Must be in
+	   the desired merging order! -->
+      <detectorsToMerge> 
+	VTPC2
+	FTPC1
+	MTPCs
+	VTPC1
+      </detectorsToMerge> 
+    </detectorSetup>
+
+    <detectorSetup detectorName = "VTPC1">
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter"
+	   for fitting in a non-zero magnetic field, or "straightTrackFitter"
+	   for fitting straight lines only. -->
+      <fitterToUse> kalmanFilter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch
+	   during track segment merging. A larger value indicates that mismatches
+	   in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 2.272 </xParameterWeight>
+      <yParameterWeight> 5.555 </yParameterWeight>
+      <aParameterWeight> 178.5 </aParameterWeight>
+      <bParameterWeight> 735.3 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- List of detectors to search for merges in. Must be in
+	   the desired merging order! -->
+      <detectorsToMerge> 
+	GTPC
+	VTPC2
+	FTPC1
+	MTPCs
+      </detectorsToMerge> 
+    </detectorSetup>
+
+  </detectorSetupList>
+
+</GlobalTrackMergerBR>

@@ -1,0 +1,53 @@
+<xsd:schema
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+  xmlns:shine="http://cern.ch/na61/schema/types">
+
+  <xsd:import
+    namespace="http://cern.ch/na61/schema/types"
+    schemaLocation="[SCHEMAPATH_IMPORTS]/ShineSchemaTypes.xsd"/>
+
+  <xsd:element name="LocalTrackFinderBR">
+     <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element name="binDensityFactor" type="xsd:double"/>
+        <xsd:element name="minKalmanFilterStepSize" type="shine:doubleWithUnit"/>
+        <xsd:element name="maxKalmanFilterStepSize" type="shine:doubleWithUnit"/>
+	<xsd:element ref="detectorSetupList"/>
+       </xsd:sequence>
+     </xsd:complexType>
+  </xsd:element>
+  
+  <xsd:element name="detectorSetupList">
+     <xsd:complexType>
+       <xsd:sequence>
+         <xsd:element ref="detectorSetup" maxOccurs="unbounded"/>
+       </xsd:sequence>
+     </xsd:complexType>
+  </xsd:element>       
+	
+  <xsd:element name="detectorSetup">
+     <xsd:complexType>		
+       <xsd:sequence>	
+         <xsd:element name="minimumClustersForTrackSeed" type="xsd:unsignedInt"/>
+         <xsd:element name="minimumClustersOnLocalTrack" type="xsd:unsignedInt"/>
+         <xsd:element name="xDisplacementTolerance" type="shine:doubleWithUnit"/>
+         <xsd:element name="yDisplacementTolerance" type="shine:doubleWithUnit"/>
+         <xsd:element name="maxAngleChangeXZ" type="shine:doubleWithUnit"/>
+         <xsd:element name="maxAngleChangeYZ" type="shine:doubleWithUnit"/>
+         <xsd:element name="maxResidualX" type="shine:doubleWithUnit"/>
+         <xsd:element name="maxResidualY" type="shine:doubleWithUnit"/>
+         <xsd:element name="fitterToUse" type="xsd:string"/>
+         <xsd:element name="xParameterWeight" type="xsd:double"/>
+         <xsd:element name="yParameterWeight" type="xsd:double"/>
+         <xsd:element name="aParameterWeight" type="xsd:double"/>
+         <xsd:element name="bParameterWeight" type="xsd:double"/>
+         <xsd:element name="qOverPParameterWeight" type="xsd:double"/>
+         <xsd:element name="maxMergeMetric" type="xsd:double"/>
+         <xsd:element name="maxAverageResidual" type="shine:doubleWithUnit"/>
+       </xsd:sequence>
+       <xsd:attribute name="detectorName" use="required" type="xsd:string"/>
+     </xsd:complexType>
+  </xsd:element>
+
+
+</xsd:schema>

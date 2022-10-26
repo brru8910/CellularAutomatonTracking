@@ -1,0 +1,45 @@
+<xsd:schema
+  xmlns:xsd='http://www.w3.org/2001/XMLSchema'
+  xmlns:shine="http://cern.ch/na61/schema/types">
+
+  <xsd:import
+    namespace="http://cern.ch/na61/schema/types"
+    schemaLocation="[SCHEMAPATH_IMPORTS]/ShineSchemaTypes.xsd"/>
+
+  <xsd:element name="GlobalTrackMergerBR">
+     <xsd:complexType>
+       <xsd:sequence>
+        <xsd:element name="minKalmanFilterStepSize" type="shine:doubleWithUnit"/>
+        <xsd:element name="maxKalmanFilterStepSize" type="shine:doubleWithUnit"/>
+        <xsd:element name="maxAverageResidual" type="shine:doubleWithUnit"/>
+        <xsd:element name="maxMergeMetric" type="xsd:double"/>
+       	<xsd:element ref="detectorSetupList"/>
+       </xsd:sequence>
+     </xsd:complexType>
+  </xsd:element>
+  
+  <xsd:element name="detectorSetupList">
+     <xsd:complexType>
+       <xsd:sequence>
+         <xsd:element ref="detectorSetup" maxOccurs="unbounded"/>
+       </xsd:sequence>
+     </xsd:complexType>
+  </xsd:element>       
+	
+  <xsd:element name="detectorSetup">
+     <xsd:complexType>		
+       <xsd:sequence>	
+         <xsd:element name="fitterToUse" type="xsd:string"/>
+         <xsd:element name="xParameterWeight" type="xsd:double"/>
+         <xsd:element name="yParameterWeight" type="xsd:double"/>
+         <xsd:element name="aParameterWeight" type="xsd:double"/>
+         <xsd:element name="bParameterWeight" type="xsd:double"/>
+         <xsd:element name="qOverPParameterWeight" type="xsd:double"/>
+	 <xsd:element name="detectorsToMerge" type="xsd:string"/>
+       </xsd:sequence>
+       <xsd:attribute name="detectorName" use="required" type="xsd:string"/>
+     </xsd:complexType>
+  </xsd:element>
+
+
+</xsd:schema>

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- Configuration of Module LocalTrackFinderBR -->
+
+<LocalTrackFinderBR
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation='[SCHEMAPATH]/LocalTrackFinderBR.xsd'>
+
+  <!-- Factor defining bin size in DetectionPlaneGrid objects. Choose wisely, as this affects performance!-->
+  <binDensityFactor> 5 </binDensityFactor>
+
+  <!-- Minimum and maximum Kalman Filter step size. Doesn't have to be too fine-grained here, since we're tracking 
+       within chambers and not extrapolating very far. -->
+  <minKalmanFilterStepSize unit="cm"> 0.5 </minKalmanFilterStepSize> 
+  <maxKalmanFilterStepSize unit="cm"> 20.0 </maxKalmanFilterStepSize> 
+
+  <!-- List of detectors in which local tracking should be performed, each with its own track finding parameters. -->
+  <detectorSetupList>
+
+   <detectorSetup detectorName = "VTPC1">
+      <!-- Minimum number of clusters to seed a local track. Should be 3 at minimum for proper curvature determination. -->
+      <minimumClustersForTrackSeed> 5 </minimumClustersForTrackSeed>
+      <!-- Minimum number of clusters to store a local track. Should be larger for better gating grid noise rejection. -->
+      <minimumClustersOnLocalTrack> 8 </minimumClustersOnLocalTrack>
+      <!-- Maximum displacement between clusters in order to form links between them. -->
+      <xDisplacementTolerance unit="cm"> 0.6 </xDisplacementTolerance> 
+      <yDisplacementTolerance unit="cm"> 0.3 </yDisplacementTolerance> 
+      <!-- Maximum angle change between pairs of clusters in order to form links between them. -->
+      <maxAngleChangeXZ unit="rad"> 0.3 </maxAngleChangeXZ> 
+      <maxAngleChangeYZ unit="rad"> 0.2 </maxAngleChangeYZ> 
+      <!-- Maximum residual between track fit and cluster position for cluster to be accepted as track member. -->
+      <maxResidualX unit="cm"> 0.5 </maxResidualX> 
+      <maxResidualY unit="cm"> 0.5 </maxResidualY> 
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter" for fitting in a non-zero magnetic field, or "straightTrackFitter" for fitting straight lines only. -->
+      <fitterToUse> kalmanFilter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch during track segment merging. A larger value indicates that mismatches in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 4.901 </xParameterWeight>
+      <yParameterWeight> 8.333 </yParameterWeight>
+      <aParameterWeight> 43.85 </aParameterWeight>
+      <bParameterWeight> 208.3 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- Merging metric upper bound. -->
+      <maxMergeMetric> 5.0 </maxMergeMetric>
+      <!-- Max average track residual. -->
+      <maxAverageResidual unit="cm"> 0.5 </maxAverageResidual>
+  
+    </detectorSetup>
+
+   <detectorSetup detectorName = "VTPC2">
+      <!-- Minimum number of clusters to seed a local track. Should be 3 at minimum for proper curvature determination. -->
+      <minimumClustersForTrackSeed> 4 </minimumClustersForTrackSeed>
+      <!-- Minimum number of clusters to store a local track. Should be larger for better gating grid noise rejection. -->
+      <minimumClustersOnLocalTrack> 8 </minimumClustersOnLocalTrack>
+      <!-- Maximum displacement between clusters in order to form links between them. -->
+      <xDisplacementTolerance unit="cm"> 0.6 </xDisplacementTolerance> 
+      <yDisplacementTolerance unit="cm"> 0.3 </yDisplacementTolerance>
+      <!-- Maximum angle change between pairs of clusters in order to form links between them. -->
+      <maxAngleChangeXZ unit="rad"> 0.3 </maxAngleChangeXZ> 
+      <maxAngleChangeYZ unit="rad"> 0.2 </maxAngleChangeYZ> 
+      <!-- Maximum residual between track fit and cluster position for cluster to be accepted as track member. -->
+      <maxResidualX unit="cm"> 0.5 </maxResidualX> 
+      <maxResidualY unit="cm"> 0.5 </maxResidualY> 
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter" for fitting in a non-zero magnetic field, or "straightTrackFitter" for fitting straight lines only. -->
+      <fitterToUse> kalmanFilter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch during track segment merging. A larger value indicates that mismatches in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 6.756 </xParameterWeight>
+      <yParameterWeight> 13.15 </yParameterWeight>
+      <aParameterWeight> 96.15 </aParameterWeight>
+      <bParameterWeight> 357.1 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- Merging metric upper bound. -->
+      <maxMergeMetric> 1.0 </maxMergeMetric>
+      <!-- Max average track residual. -->
+      <maxAverageResidual unit="cm"> 0.5 </maxAverageResidual>
+    </detectorSetup>
+
+    <detectorSetup detectorName = "MTPCs">
+      <!-- Minimum number of clusters to seed a local track. Should be 3 at minimum for proper curvature determination. -->
+      <minimumClustersForTrackSeed> 5 </minimumClustersForTrackSeed>
+      <!-- Minimum number of clusters to store a local track. Should be larger for better gating grid noise rejection. -->
+      <minimumClustersOnLocalTrack> 18 </minimumClustersOnLocalTrack>
+      <!-- Maximum displacement between clusters in order to form links between them. -->
+      <xDisplacementTolerance unit="cm"> 0.3 </xDisplacementTolerance>
+      <yDisplacementTolerance unit="cm"> 0.3 </yDisplacementTolerance>
+      <!-- Maximum angle change between pairs of clusters in order to form links between them. -->
+      <maxAngleChangeXZ unit="rad"> 0.2 </maxAngleChangeXZ> 
+      <maxAngleChangeYZ unit="rad"> 0.2 </maxAngleChangeYZ> 
+      <!-- Maximum residual between track fit and cluster position for cluster to be accepted as track member. -->
+      <maxResidualX unit="cm"> 0.5 </maxResidualX> 
+      <maxResidualY unit="cm"> 0.5 </maxResidualY> 
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter" for fitting in a non-zero magnetic field, or "straightTrackFitter" for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch during track segment merging. A larger value indicates that mismatches in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 5.000 </xParameterWeight>
+      <yParameterWeight> 8.333 </yParameterWeight>
+      <aParameterWeight> 416.6 </aParameterWeight>
+      <bParameterWeight> 625.0 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- Merging metric upper bound. -->
+      <maxMergeMetric> 1.0 </maxMergeMetric>
+      <!-- Max average track residual. -->
+      <maxAverageResidual unit="cm"> 0.5 </maxAverageResidual>
+    </detectorSetup>
+
+
+   <detectorSetup detectorName = "GTPC">
+      <!-- Minimum number of clusters to seed a local track. Should be 3 at minimum for proper curvature determination. -->
+      <minimumClustersForTrackSeed> 3 </minimumClustersForTrackSeed>
+      <!-- Minimum number of clusters to store a local track. Should be larger for better gating grid noise rejection. -->
+      <minimumClustersOnLocalTrack> 4 </minimumClustersOnLocalTrack>
+      <!-- Maximum displacement between clusters in order to form links between them. -->
+      <xDisplacementTolerance unit="cm"> 0.3 </xDisplacementTolerance>
+      <yDisplacementTolerance unit="cm"> 0.3 </yDisplacementTolerance>
+      <!-- Maximum angle change between pairs of clusters in order to form links between them. -->
+      <maxAngleChangeXZ unit="rad"> 0.2 </maxAngleChangeXZ> 
+      <maxAngleChangeYZ unit="rad"> 0.2 </maxAngleChangeYZ> 
+      <!-- Maximum residual between track fit and cluster position for cluster to be accepted as track member. -->
+      <maxResidualX unit="cm"> 0.5 </maxResidualX> 
+      <maxResidualY unit="cm"> 0.5 </maxResidualY>
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter" for fitting in a non-zero magnetic field, or "straightTrackFitter" for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch during track segment merging. A larger value indicates that mismatches in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 0.862 </xParameterWeight>
+      <yParameterWeight> 0.862 </yParameterWeight>
+      <aParameterWeight> 2.500 </aParameterWeight>
+      <bParameterWeight> 2.500 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- Merging metric upper bound. -->
+      <maxMergeMetric> 1.0 </maxMergeMetric>
+      <!-- Max average track residual. -->
+      <maxAverageResidual unit="cm"> 0.5 </maxAverageResidual>
+    </detectorSetup>
+
+    <detectorSetup detectorName = "FTPC1">
+      <!-- Minimum number of clusters to seed a local track. Should be 3 at minimum for proper curvature determination. -->
+      <minimumClustersForTrackSeed> 3 </minimumClustersForTrackSeed>
+      <!-- Minimum number of clusters to store a local track. Should be larger for better gating grid noise rejection. -->
+      <minimumClustersOnLocalTrack> 6 </minimumClustersOnLocalTrack>
+      <!-- Maximum displacement between clusters in order to form links between them. -->
+      <xDisplacementTolerance unit="cm"> 0.3 </xDisplacementTolerance> 
+      <yDisplacementTolerance unit="cm"> 0.3 </yDisplacementTolerance> 
+      <!-- Maximum angle change between pairs of clusters in order to form links between them. -->
+      <maxAngleChangeXZ unit="rad"> 0.2 </maxAngleChangeXZ> 
+      <maxAngleChangeYZ unit="rad"> 0.2 </maxAngleChangeYZ> 
+      <!-- Maximum residual between track fit and cluster position for cluster to be accepted as track member. -->
+      <maxResidualX unit="cm"> 0.5 </maxResidualX> 
+      <maxResidualY unit="cm"> 0.5 </maxResidualY> 
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter" for fitting in a non-zero magnetic field, or "straightTrackFitter" for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch during track segment merging. A larger value indicates that mismatches in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 20.83 </xParameterWeight>
+      <yParameterWeight> 10.00 </yParameterWeight>
+      <aParameterWeight> 178.5 </aParameterWeight>
+      <bParameterWeight> 178.5 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- Merging metric upper bound. -->
+      <maxMergeMetric> 1.0 </maxMergeMetric>
+      <!-- Max average track residual. -->
+      <maxAverageResidual unit="cm"> 0.5 </maxAverageResidual>
+    </detectorSetup>
+
+    <detectorSetup detectorName = "FTPC2">
+      <!-- Minimum number of clusters to seed a local track. Should be 3 at minimum for proper curvature determination. -->
+      <minimumClustersForTrackSeed> 3 </minimumClustersForTrackSeed>
+      <!-- Minimum number of clusters to store a local track. Should be larger for better gating grid noise rejection. -->
+      <minimumClustersOnLocalTrack> 6 </minimumClustersOnLocalTrack>
+      <!-- Maximum displacement between clusters in order to form links between them. -->
+      <xDisplacementTolerance unit="cm"> 0.3 </xDisplacementTolerance> 
+      <yDisplacementTolerance unit="cm"> 0.3 </yDisplacementTolerance> 
+      <!-- Maximum angle change between pairs of clusters in order to form links between them. -->
+      <maxAngleChangeXZ unit="rad"> 0.2 </maxAngleChangeXZ> 
+      <maxAngleChangeYZ unit="rad"> 0.2 </maxAngleChangeYZ> 
+      <!-- Maximum residual between track fit and cluster position for cluster to be accepted as track member. -->
+      <maxResidualX unit="cm"> 0.5 </maxResidualX> 
+      <maxResidualY unit="cm"> 0.5 </maxResidualY> 
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter" for fitting in a non-zero magnetic field, or "straightTrackFitter" for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch during track segment merging. A larger value indicates that mismatches in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 6.410 </xParameterWeight>
+      <yParameterWeight> 7.575 </yParameterWeight>
+      <aParameterWeight> 75.75 </aParameterWeight>
+      <bParameterWeight> 64.10 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- Merging metric upper bound. -->
+      <maxMergeMetric> 1.0 </maxMergeMetric>
+      <!-- Max average track residual. -->
+      <maxAverageResidual unit="cm"> 0.5 </maxAverageResidual>
+    </detectorSetup>
+
+    <detectorSetup detectorName = "FTPC3">
+      <!-- Minimum number of clusters to seed a local track. Should be 3 at minimum for proper curvature determination. -->
+      <minimumClustersForTrackSeed> 3 </minimumClustersForTrackSeed>
+      <!-- Minimum number of clusters to store a local track. Should be larger for better gating grid noise rejection. -->
+      <minimumClustersOnLocalTrack> 6 </minimumClustersOnLocalTrack>
+      <!-- Maximum displacement between clusters in order to form links between them. -->
+      <xDisplacementTolerance unit="cm"> 0.3 </xDisplacementTolerance> 
+      <yDisplacementTolerance unit="cm"> 0.3 </yDisplacementTolerance> 
+      <!-- Maximum angle change between pairs of clusters in order to form links between them. -->
+      <maxAngleChangeXZ unit="rad"> 0.2 </maxAngleChangeXZ> 
+      <maxAngleChangeYZ unit="rad"> 0.2 </maxAngleChangeYZ> 
+      <!-- Maximum residual between track fit and cluster position for cluster to be accepted as track member. -->
+      <maxResidualX unit="cm"> 0.5 </maxResidualX> 
+      <maxResidualY unit="cm"> 0.5 </maxResidualY> 
+      <!-- Track fitter to use in this detector. Options are "kalmanFilter" for fitting in a non-zero magnetic field, or "straightTrackFitter" for fitting straight lines only. -->
+      <fitterToUse> straightTrackFitter </fitterToUse>
+      <!-- Weights for assigning signifiance to track parameter match/mismatch during track segment merging. A larger value indicates that mismatches in the corresponding track parameter will penalize track segment merging more. -->
+      <xParameterWeight> 6.250 </xParameterWeight>
+      <yParameterWeight> 6.756 </yParameterWeight>
+      <aParameterWeight> 75.75 </aParameterWeight>
+      <bParameterWeight> 100.0 </bParameterWeight>
+      <qOverPParameterWeight> 0 </qOverPParameterWeight>
+      <!-- Merging metric upper bound. -->
+      <maxMergeMetric> 1.0 </maxMergeMetric>
+      <!-- Max average track residual. -->
+      <maxAverageResidual unit="cm"> 0.5 </maxAverageResidual>
+    </detectorSetup>
+
+  </detectorSetupList>
+  
+</LocalTrackFinderBR>
